@@ -57,6 +57,12 @@ h2{font-size:1.3rem;margin:40px 0 12px}
 // To add a project: copy an object below, edit it, commit. That's it.
 const TODO = null; // null renders as a "fill me in" prompt
 const projects = [
+{title:"Guitar Case Environment Monitor", meta:"UGA sensors course, in progress", tags:["Embedded","Electronics","PCB","IoT","CAD","Data"],
+ drive:"",
+ point:"A battery-powered device that sits in a guitar case and tracks temperature, humidity, and pressure, plus whether the guitar is being played. An RGB LED shows at a glance if storage conditions are safe, and readings are logged online to ThingSpeak.",
+ hard:"Everything runs from one 3.7 V LiPo: a boost converter makes 9 V for the analog stage and a separate 3.3 V rail powers the sensors. The piezo and a homemade copper-tape touch sensor both need op-amp signal conditioning before the ADC, and the finished unit must fit a specific case compartment. My first power wiring failed because I fed 3.3 V into the ESP32's VIN pin, which is a regulator input.",
+ role:"Solo project: circuit design, sensor calibration against a reference thermometer, ESP32 firmware and cloud logging. Still to come: the analog stage, a custom PCB in KiCad, and a Fusion 360 enclosure sized to the case.",
+ outcome:"Checkpoint 2 results: BMP280 and SHT31 read over I2C and log to ThingSpeak. ESP32 ADC characterized (R\u00b2 0.992). SHT31 calibrated against a reference thermometer (R\u00b2 0.995), with 0.069 \u00b0C standard deviation over 46 readings and a Scheff\u00e9 band for flagging suspect readings. PCB, analog stage, and enclosure are in progress."},
 {title:"Scaled Electronic Circuit Lab Work Bench", meta:"University of Georgia, team project", tags:["Embedded","Python","Electronics"],
  drive:"", 
  point:"A breadboard-scale replica of a full circuit lab bench, with a Raspberry Pi 4 as the central computer.",
@@ -68,6 +74,12 @@ const projects = [
  hard:"Recreating the race accurately: lap times, sector-level position changes, and driver order had to match real telemetry.",
  role:"Solo build. Pulled telemetry with the FastF1 Python API. Wired an Arduino Mega 2560 to WS2812B LEDs and a 16x2 LCD. Wrote the 5-button input, live lap timer, mid-lap position-swap logic, and victory sequence. Routed the wooden enclosure.",
  outcome:"A working display that replays key laps and ends in an automated victory celebration."},
+{title:"Reaction Time Game", meta:"Personal", tags:["Embedded","Electronics","CAD"],
+ drive:"",
+ point:"A handheld reaction-time game. After a random delay, a buzzer sounds and a green LED lights; the player presses a button as fast as possible. The OLED shows the reaction time and a rating.",
+ hard:TODO,
+ role:"Built the circuit on an Arduino Uno with a potentiometer, two buttons, three LEDs, an SSD1306 OLED, a buzzer, and a power switch, running from a 9 V battery. Wrote the game logic. Measured every component, modeled the enclosure in Fusion 360, sliced in Cura, and printed it.",
+ outcome:"A working game. The potentiometer sets difficulty by changing the time windows for good, okay, and bad results. Yellow means okay, red means bad, and the buzzer tone gets lower with each rating. The second button starts each round."},
 {title:"Two Wheeled RC Ground Drone", meta:"Personal, in progress", tags:["Embedded","C++","CAD","Wireless"],
  drive:"",
  point:"A wireless-controlled two-wheeled ground drone with tank-style steering.",
