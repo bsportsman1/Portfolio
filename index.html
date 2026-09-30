@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brett Sportsman | Engineering Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f4;--ink:#14212b;--mute:#5a6b77;--line:#c5d0d7;--card:#fff;--acc:#ff8000;--acc-ink:#8a4200}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1a22;--ink:#e8eef2;--mute:#93a4b0;--line:#26384a;--card:#16242f;--acc-ink:#ffb266}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Archivo,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;
+background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:32px 32px;background-attachment:fixed}
+main{max-width:900px;margin:0 auto;padding:40px 20px 80px}
+h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800;margin:0;letter-spacing:-.02em;line-height:1.05}
+.sub{color:var(--mute);margin:8px 0 20px;font-size:1.1rem}
+.links a,.chip,.tab{font:inherit;text-decoration:none}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.links a{background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:4px;font-weight:600}
+.links a.alt{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+h2{font-size:1.3rem;margin:40px 0 12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:2px solid var(--ink);background:var(--card);color:var(--ink);padding:4px 14px;border-radius:99px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#111;font-weight:600}
+.proj{background:var(--card);border:2px solid var(--ink);border-radius:6px;margin-bottom:16px}
+.proj summary{cursor:pointer;padding:16px 20px;list-style:none}
+.proj summary::-webkit-details-marker{display:none}
+.proj h3{margin:0;font-size:1.25rem}
+.meta{color:var(--mute);font-size:.9rem}
+.tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:.8rem;border:1px solid var(--line);padding:1px 8px;border-radius:3px;color:var(--mute)}
+.proj[open] summary{border-bottom:2px solid var(--ink);background:linear-gradient(90deg,var(--acc),var(--acc) 6px,transparent 6px)}
+.tabs{display:flex;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{background:none;border:0;padding:10px 16px;cursor:pointer;color:var(--mute);border-bottom:3px solid transparent;white-space:nowrap}
+.tab[aria-selected=true]{color:var(--ink);font-weight:600;border-color:var(--acc)}
+.panel{padding:16px 20px 20px;max-width:70ch}
+.panel ul{padding-left:20px;margin:0}
+.todo{color:var(--acc-ink);font-style:italic}
+.exp{border-left:4px solid var(--acc);padding:2px 0 2px 14px;margin-bottom:16px;background:var(--card)}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+</style></head><body><main>
+<h1>Brett Sportsman</h1>
+<p class="sub">Computer Systems Engineering, University of Georgia (May 2028). Robotics and AI.</p>
+<div class="links">
+<a href="DRIVE_LINK_HERE">Google Drive: CAD, code, photos</a>
+<a class="alt" href="https://github.com/bsportsman1">GitHub</a>
+<a class="alt" href="mailto:Brett.Sportsman@uga.edu">Email</a>
+</div>
+
+<h2>Projects</h2>
+<p class="meta">Filter by skill, then open a project. Each has four tabs: the point, the challenge, my role, and the outcome.</p>
+<div class="chips" id="chips"></div>
+<div id="projects"></div>
+
+<h2>Experience</h2>
+<div id="exp"></div>
+</main>
+<script>
+// To add a project: copy an object below, edit it, commit. That's it.
+const TODO = null; // null renders as a "fill me in" prompt
+const projects = [
+{title:"Scaled Electronic Circuit Lab Work Bench", meta:"University of Georgia, team project", tags:["Embedded","Python","Electronics"],
+ drive:"", 
+ point:"A breadboard-scale replica of a full circuit lab bench, with a Raspberry Pi 4 as the central computer.",
+ hard:TODO, role:TODO,
+ outcome:"Four working instruments: ohmmeter, voltmeter, DC reference voltage source, and function generator. It ties embedded programming to physical circuits across a multi-component build."},
+{title:"Formula One Reenactment Display", meta:"Personal", tags:["Embedded","C++","Python","CAD","Data"],
+ drive:"",
+ point:"An interactive shadow box marking Lando Norris's first F1 win at the 2024 Miami Grand Prix.",
+ hard:"Recreating the race accurately: lap times, sector-level position changes, and driver order had to match real telemetry.",
+ role:"Solo build. Pulled telemetry with the FastF1 Python API. Wired an Arduino Mega 2560 to WS2812B LEDs and a 16x2 LCD. Wrote the 5-button input, live lap timer, mid-lap position-swap logic, and victory sequence. Routed the wooden enclosure.",
+ outcome:"A working display that replays key laps and ends in an automated victory celebration."},
+{title:"Two Wheeled RC Ground Drone", meta:"Personal, in progress", tags:["Embedded","C++","CAD","Wireless"],
+ drive:"",
+ point:"A wireless-controlled two-wheeled ground drone with tank-style steering.",
+ hard:"Fitting printed parts together: wall thickness and axle tolerances had to work for PLA printing.",
+ role:"Solo build. Arduino Nanos with SG90 continuous-rotation servos and a dual-joystick controller, tank drive logic in C++. Modeled the cylindrical chassis and tractor-style wheels in Fusion 360. Now adding NRF24L01 radios for 2.4 GHz control.",
+ outcome:"Wired drive works. Wireless link is in progress."}
+];
+const experience = [
+{t:"AI Intern, Steel Partners Holdings", d:"Aug 2026 to present, remote", s:"Building AI tools for HR: candidate screening, employee evaluations, workforce analysis."},
+{t:"AI Trainer, Handshake AI (contract)", d:"Oct 2025 to May 2026, remote", s:"Graded LLM responses for frontier labs and wrote STEM test prompts to expose reasoning gaps."},
+{t:"Low Voltage Technician, Kellar Security Systems", d:"Nov 2025 to Jan 2026, seasonal", s:"Installed cameras, access control, fire alarm parts, and A/V; pulled and terminated wiring."},
+{t:"Student Assistant, UGA University Testing Services", d:"May 2025 to present", s:"Proctor exams for up to 50 test takers at once; front desk on a team of 10."}
+];
+const tabs=[["point","The point"],["hard","Why it was hard"],["role","What I did"],["outcome","Outcome"]];
+let active=null;
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function chips(){const all=[...new Set(projects.flatMap(p=>p.tags))].sort();
+ const el=document.getElementById("chips");el.innerHTML="";
+ ["All",...all].forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=t;
+  b.setAttribute("aria-pressed",(t==="All"&&!active)||t===active);
+  b.onclick=()=>{active=t==="All"?null:t;chips();list()};el.append(b)})}
+function panel(p,k){const v=p[k];return v?`<p>${esc(v)}</p>`:`<p class="todo">Not written yet. Add this in the project data.</p>`}
+function list(){const el=document.getElementById("projects");el.innerHTML="";
+ projects.filter(p=>!active||p.tags.includes(active)).forEach(p=>{
+  const d=document.createElement("details");d.className="proj";
+  d.innerHTML=`<summary><h3>${esc(p.title)}</h3><div class="meta">${esc(p.meta)}</div><div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div></summary>
+  <div class="tabs" role="tablist">${tabs.map(([k,l],i)=>`<button class="tab" role="tab" data-k="${k}" aria-selected="${i==0}">${l}</button>`).join("")}</div>
+  <div class="panel">${panel(p,"point")}${p.drive?`<p><a href="${p.drive}">Project files on Drive</a></p>`:""}</div>`;
+  d.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{d.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected",x===b));
+   d.querySelector(".panel").innerHTML=panel(p,b.dataset.k)});
+  el.append(d)})}
+document.getElementById("exp").innerHTML=experience.map(e=>`<div class="exp"><strong>${esc(e.t)}</strong><div class="meta">${esc(e.d)}</div>${esc(e.s)}</div>`).join("");
+chips();list();
+</script></body></html>
